@@ -46,5 +46,5 @@ def request_bot_api(path: str, method: Method, param: dict = {}):
         res = httpx.get(__BOT_API_HOST + path, headers=headers, params=param)
     elif method == Method.POST:
         headers["Content-Type"] = "application/json; charset=utf8"
-        res = httpx.post(__BOT_API_HOST + path, headers=headers, params=param)
+        res = httpx.post(__BOT_API_HOST + path, headers=headers, json=param)
     return res.json()
