@@ -1,0 +1,6 @@
+.env
+.gitignore
+deploy.sh
+Pipfile
+Pipfile.lock
+README.md
