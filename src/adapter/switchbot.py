@@ -5,6 +5,7 @@ import base64
 import httpx
 import os
 from enum import Enum
+import json
 
 __API_TOKEN = os.getenv("API_TOKEN")
 __API_SECRET = os.getenv("API_SECRET")
@@ -42,9 +43,11 @@ class Method(Enum):
 def request_bot_api(path: str, method: Method, param: dict = {}):
     headers = __create_auth_headers()
     res = None
+    print(f"[INFO]bot_request\tpath:{path}\tparam:{json.dumps(param)}")
     if method == Method.GET:
         res = httpx.get(__BOT_API_HOST + path, headers=headers, params=param)
     elif method == Method.POST:
         headers["Content-Type"] = "application/json; charset=utf8"
         res = httpx.post(__BOT_API_HOST + path, headers=headers, json=param)
+    print(f"[INFO]bot_response\ttext:{res.text}")
     return res.json()

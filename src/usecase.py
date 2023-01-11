@@ -52,7 +52,6 @@ def get_meter_status(meter_id: str):
         f"/v1.1/devices/{meter_id}/status",
         bot.Method.GET,
     )
-    print(res)
     return {
         "success": res["statusCode"] == 100,
         "message": res["message"],
